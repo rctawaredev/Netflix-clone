@@ -23,7 +23,7 @@ const Originals = () => {
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
-  // 🎬 ORIGINALS API CALL
+  
   const getOriginalsMovies = async () => {
     setApiStatus(apiStatusConstants.IN_PROGRESS);
 
@@ -59,35 +59,55 @@ const Originals = () => {
     getOriginalsMovies();
   }, []);
 
-  // 🔴 LOADING VIEW
+  
   const renderLoadingView = () => (
-    <div className="flex justify-center items-center py-20">
-      <BeatLoader color="#ef4444" />
+  <div className="flex justify-center px-6 md:px-[164px]">
+    
+    <div className="
+      flex f
+      gap-5
+      justify-center
+      items-center
+      py-16
+      bg-[#0D0D0D]
+      w-full
+      max-w-6xl
+      rounded-lg
+    ">
+         <BeatLoader color="#ef4444" />
     </div>
-  );
+  </div>
+);
 
-  // ❌ FAILURE VIEW
   const renderFailureView = () => (
-    <div className="flex justify-center items-center py-10">
-      <button
+    <div className="flex justify-center  px-6 md:px-[164px]">
+      <div className="flex flex-col gap-5 rounded-lg justify-center items-center py-10 bg-[#0D0D0D] w-full py-10  px-6 max-w-6xl ">
+        <img src="https://res.cloudinary.com/distnojxb/image/upload/v1771499484/alert-triangle_y1ebev.png" />
+        <h1 className="text-white text-xs md:text-lg">
+          Something went wrong. Please try again
+        </h1>
+         <button
         onClick={getOriginalsMovies}
-        className="bg-white text-black px-4 py-2 rounded-md"
+        className="bg-white text-black text-xs md:text-sm px-4 py-2 rounded-md"
       >
         Try Again
       </button>
+      </div>
     </div>
   );
 
-  // ✅ SUCCESS VIEW
+ 
+
+ 
+
   const renderSuccessView = () => (
     <div className="relative px-[24px] md:px-[164px]">
-
       {/* LEFT ARROW */}
       <button
         onClick={scrollPrev}
         className="hidden md:flex absolute left-[110px] top-1/2 -translate-y-1/2 z-10
-                   bg-black/60 text-white text-2xl h-10 w-10 rounded-full
-                   items-center justify-center"
+      bg-black/60 text-white text-2xl h-10 w-10 rounded-full
+      items-center justify-center"
       >
         ❮
       </button>
@@ -96,36 +116,31 @@ const Originals = () => {
       <button
         onClick={scrollNext}
         className="hidden md:flex absolute right-[110px] top-1/2 -translate-y-1/2 z-10
-                   bg-black/60 text-white text-2xl h-10 w-10 rounded-full
-                   items-center justify-center"
+      bg-black/60 text-white text-2xl h-10 w-10 rounded-full
+      items-center justify-center"
       >
         ❯
       </button>
 
-      {/* EMBLA VIEWPORT */}
+      {/* EMBLA */}
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex gap-4 md:gap-6">
-
           {originalsData.map((movie) => (
             <Link
               key={movie.id}
               to={`/movies/${movie.id}`}
-              className="flex-none w-[45%] md:w-[254px]"
+              className="flex-none w-[35%] md:w-[180px]"
             >
-              <img
-                src={movie.backdropPath}
-                alt={movie.title}
-                className="
-                  w-full
-                  h-[140px]
-                  md:h-[296px]
-                  rounded-[8px]
-                  object-cover
-                "
-              />
+              {/* PORTRAIT CARD */}
+              <div className="w-full aspect-[2/3] rounded-[8px] overflow-hidden">
+                <img
+                  src={movie.backdropPath}
+                  alt={movie.title}
+                  className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                />
+              </div>
             </Link>
           ))}
-
         </div>
       </div>
     </div>
@@ -145,13 +160,15 @@ const Originals = () => {
   };
 
   return (
-    <div className="bg-[#131313] py-6">
-      <h1 className="
+    <div className="bg-[#131313] py-6 pb-20">
+      <h1
+        className="
         text-[16px] md:text-[24px]
         font-semibold text-white
         px-[24px] md:px-[164px]
         mb-4
-      ">
+      "
+      >
         Originals
       </h1>
 

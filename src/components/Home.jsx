@@ -4,6 +4,10 @@ import Cookies from "js-cookie";
 import { BeatLoader } from "react-spinners";
 import Trending from "./Trending";
 import Originals from "./Originals";
+import { FaInstagram } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
+import { RiTwitterXFill } from "react-icons/ri";
+import { FaYoutube } from "react-icons/fa6";
 
 const apiStatusConstants = {
   INITIAL: "INITIAL",
@@ -29,26 +33,23 @@ const Home = () => {
 
       const data = await response.json();
 
-      // API might not return results
       if (!response.ok || !data.results) {
         setApiStatus(apiStatusConstants.FAILURE);
         return;
       }
 
-      const PosterDetails =
+      const randomMovie =
         data.results[Math.floor(data.results.length * Math.random())];
 
-      const updatedPosterData = {
-        id: PosterDetails.id,
-        backdropPath: PosterDetails.backdrop_path,
-        overview: PosterDetails.overview,
-        posterPath: PosterDetails.poster_path,
-        title: PosterDetails.title,
-      };
+      setPosterData({
+        id: randomMovie.id,
+        backdropPath: randomMovie.backdrop_path,
+        overview: randomMovie.overview,
+        title: randomMovie.title,
+      });
 
-      setPosterData(updatedPosterData);
       setApiStatus(apiStatusConstants.SUCCESS);
-    } catch (error) {
+    } catch {
       setApiStatus(apiStatusConstants.FAILURE);
     }
   };
@@ -57,69 +58,124 @@ const Home = () => {
     getPoster();
   }, []);
 
-  const renderFailureView = () => {
-    return (
-      <>
-        <Navbar className="bg-[#131313]" />
+  const renderLoadingView = () => (
+    <>
+      <div className="flex justify-center px-6 md:px-[164px] py-10 ">
+        <div
+          className="
+            flex
+            justify-center
+            items-center
+            pt-50
+            bg-[#0D0D0D]
+            w-full
+            max-w-6xl
+            rounded-lg
+          "
+        >
+          <BeatLoader color="#ef4444" />
+        </div>
+      </div>
+    </>
+  );
 
-        <div className="bg-[#131313] min-h-screen pt-[75px] md:pt-[103px] flex justify-center items-center px-8">
-          <div
-            className="w-full max-w-6xl h-[213px] md:h-[466px] 
-                        rounded-[4px] bg-[#0D0D0D]
-                        flex flex-col justify-center items-center gap-4"
+  const renderFailureView = () => (
+    <>
+      <div className="flex justify-center px-6 md:px-[164px] py-10 pt-[135px]">
+        <div
+          className="
+            flex flex-col
+            gap-5
+            justify-center
+            items-center
+            py-10
+            bg-[#0D0D0D]
+            w-full
+            h-[60vh]
+            max-w-6xl
+            rounded-lg
+          "
+        >
+          <img src="https://res.cloudinary.com/distnojxb/image/upload/v1771499484/alert-triangle_y1ebev.png" />
+
+          <h1 className="text-white text-xs md:text-lg">
+            Something went wrong. Please try again
+          </h1>
+
+          <button
+            onClick={getPoster}
+            className="bg-white text-black text-xs md:text-sm px-4 py-2 rounded-md"
           >
-            <img
-              src="https://res.cloudinary.com/distnojxb/image/upload/v1771499484/alert-triangle_y1ebev.png"
-              className="h-[24px] w-[24px]"
-            />
-
-            <p className="text-white text-sm">
-              Something went wrong. Please try again
-            </p>
-
-            <button
-              onClick={getPoster}
-              className="rounded-md bg-white w-[77px] h-[28px]
-                       font-semibold text-[12px] text-black"
-            >
-              Try Again
-            </button>
-          </div>
+            Try Again
+          </button>
         </div>
-      </>
-    );
-  };
+      </div>
+    </>
+  );
 
-  const renderLoadingView = () => {
+  const renderFooter = () => {
     return (
-      <>
-        <Navbar className="bg-[#131313]" />
-        <div className="bg-[#131313] min-h-screen pt-[75px] md:pt-[103px]">
-          <div className="flex justify-center items-center px-8">
-            <div
-              className="w-full max-w-6xl h-[213px] md:h-[466px] 
-                        rounded-[4px] bg-[#0D0D0D]
-                        flex justify-center items-center"
+      <div className="flex justify-center py-10">
+        <ul className="flex flex-col items-center gap-3">
+          <li className="flex gap-5">
+            <a
+              href="https://www.google.com"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <BeatLoader color="#ef4444" />
-            </div>
-          </div>
-        </div>
-      </>
+              <FaGoogle className="md:text-2xl text-xl text-white hover:text-red-500 transition duration-200" />
+            </a>
+
+            <a
+              href="https://x.com/NetflixIndia"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <RiTwitterXFill className="md:text-2xl text-xl text-white hover:text-red-500 transition duration-200" />
+            </a>
+
+            <a
+              href="https://www.instagram.com/netflix_in/?hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="md:text-2xl text-xl text-white hover:text-red-500 transition duration-200" />
+            </a>
+
+            <a
+              href="https://www.youtube.com/@NetflixIndiaOfficial"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutube className="md:text-2xl text-xl text-white hover:text-red-500 transition duration-200" />
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.linkedin.com/in/rctaware/">
+              <h1 className="text-white md:text-[20px] font-extrabold hover:text-blue-500 transition duration-200">
+                Contact Us
+              </h1>
+            </a>
+          </li>
+        </ul>
+      </div>
     );
   };
-const renderSuccessView = () => {
-  return (
-    <div>
+
+  // ✅ SUCCESS
+  const renderSuccessView = () => (
+    <>
+      {/* HERO */}
       <div
         className="
         w-full
         h-[80vh] md:h-[90vh]
         flex flex-col
-        justify-center md:justify-end
+        justify-end
         bg-no-repeat bg-cover bg-center
         px-[24px] md:px-[164px]
-        pb-0 md:pb-[60px] lg:pb-[80px] 
+        pb-[40px] md:pb-[60px] lg:pb-[80px]
         "
         style={{
           background: `
@@ -133,45 +189,22 @@ const renderSuccessView = () => {
           `,
         }}
       >
-
-        <Navbar className="bg-black/20 fixed top-0 left-0 right-0 backdrop-blur-xs"  />
-
         <div className="max-w-[90%] md:max-w-[600px]">
-
-          <h1 className="
-          text-white
-          text-[28px] md:text-[48px]
-          font-bold
-          leading-tight
-          mb-3
-          ">
+          <h1 className="text-white text-[28px] md:text-[48px] font-bold mb-3">
             {posterData.title}
           </h1>
 
-          <p className="
-          text-white
-          text-[14px] md:text-[16px]
-          mb-4
-          ">
+          <p className="text-white text-[14px] md:text-[16px] mb-4">
             {posterData.overview}
           </p>
 
-          <button className="
-          bg-white text-black
-          rounded-md
-          h-9 px-6
-          ">
+          <button className="bg-white text-black rounded-md h-9 px-6">
             Play
           </button>
-
         </div>
       </div>
-
-      <Trending />
-      <Originals/>
-    </div>
+    </>
   );
-};
 
   const renderView = () => {
     switch (apiStatus) {
@@ -186,7 +219,15 @@ const renderSuccessView = () => {
     }
   };
 
-  return <div className="bg-[#131313]">{renderView()}</div>;
+  return (
+    <div className="bg-[#131313]">
+      <Navbar className="fixed top-0 left-0 right-0 bg-black/20 backdrop-blur-sm z-50" />
+      {renderView()}
+      <Trending />
+      <Originals />
+      {renderFooter()}
+    </div>
+  );
 };
 
 export default Home;

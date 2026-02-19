@@ -7,9 +7,9 @@ const Navbar = ({className = "" }) => {
   const [clickedHamb, setClickedHamb] = useState(false);
 
   return (
-    <nav className={` w-full  ${className}`}>
+    <nav className={` w-full px-10 lg:px-[164px] md:px-[100px]  ${className}`}>
   
-  <div className="max-w-7xl mx-auto px-6 flex justify-between items-center 
+  <div className="max-w-7xl   flex justify-between items-center 
                   text-white h-[75px] md:h-[103px]">
 
     {/* LEFT */}
@@ -31,15 +31,11 @@ const Navbar = ({className = "" }) => {
     </ul>
 
     {/* RIGHT */}
-    <ul className="flex items-center gap-7">
+    <ul className="flex items-center gap-4">
       <li>
-        <div className="border flex justify-between items-center h-8 md:w-60 w-40 rounded-md">
-          <input
-            type="search"
-            className="h-8 w-full outline-none bg-transparent px-2"
-          />
-          <FaSearch className="bg-[#262626] text-white rounded-r-md h-8 px-4 text-5xl" />
-        </div>
+        
+          <FaSearch className=" text-white text-xl" />
+        
       </li>
 
       <li>
