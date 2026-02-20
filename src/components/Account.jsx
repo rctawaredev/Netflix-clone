@@ -8,7 +8,7 @@ const Account=()=> {
     const renderAccount=()=> {
         return(
             <>
-            <div className="h-[60vh] bg-white flex flex-col items-start px-10 lg:px-[164px] md:px-[100px]  pt-[40px]">
+            <div className="h-[80vh] bg-white flex flex-col items-start justify-center px-10 lg:px-[164px] md:px-[100px]  ">
                 <h1 className="text-[#131313] md:text-3xl text-2xl font-[500] tracking-normal leading-[100%] pb-4">Account</h1>
                 <ul className="flex gap-4 border-y-[#CBD5E1] border-y-2 py-6 w-full">
                     <li>
@@ -91,7 +91,7 @@ const Account=()=> {
 
     return (
         <div className="bg-[#181818] min-h-screen">
-            <Navbar className="bg-[#131313]"/>
+            <Navbar className="bg-[#131313] fixed"/>
             {renderAccount()}
             {renderFooter()}
         </div>

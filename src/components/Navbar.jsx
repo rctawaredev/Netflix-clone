@@ -68,7 +68,12 @@ const Navbar = ({className = "" }) => {
                     ${clickedHamb ? "max-h-40 opacity-100 py-4" : "max-h-0 opacity-0"}
                     bg-black/80`}
       >
-        <li className="text-white">Home</li>
+         <li>
+          <Link  to="/" className="text-white">
+           Home
+          </Link>
+         
+        </li>
         <li className="text-white">Popular</li>
         <li>
           <Link  to="/account" className="text-white">
