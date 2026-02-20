@@ -108,7 +108,7 @@ const Search = () => {
           {paginatedMovies.map(movie => (
             <Link key={movie.id} to={`/movies/${movie.id}`}>
               <img
-                src={movie.poster_path}
+                src={movie.backdrop_path}
                 alt={movie.title}
                 className="rounded-lg object-cover hover:scale-105 transition duration-300"
               />

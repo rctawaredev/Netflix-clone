@@ -45,8 +45,9 @@ const Home = () => {
       setPosterData({
         id: randomMovie.id,
         backdropPath: randomMovie.backdrop_path,
+        posterPath:randomMovie.poster_path,
         overview: randomMovie.overview,
-        title: randomMovie.title,
+        title: randomMovie.title
       });
 
       setApiStatus(apiStatusConstants.SUCCESS);
@@ -163,21 +164,39 @@ const Home = () => {
     );
   };
 
-  
   const renderSuccessView = () => (
-    <>
+  <>
+    <div className="relative w-full h-[80vh] md:h-[90vh]">
+
+      {/* 📱 MOBILE POSTER */}
       <div
         className="
-        w-full
-        h-[80vh] md:h-[90vh]
-        flex flex-col
-        justify-end
+        absolute inset-0
         bg-no-repeat bg-cover bg-center
-        px-[24px] md:px-[164px]
-        pb-[40px] md:pb-[60px] lg:pb-[80px]
+        md:hidden
         "
         style={{
-          background: `
+          backgroundImage: `
+          linear-gradient(
+            180deg,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0.5) 40%,
+            #181818 95%
+          ),
+          url(${posterData.posterPath})
+          `,
+        }}
+      />
+
+      {/* 💻 DESKTOP BACKDROP */}
+      <div
+        className="
+        absolute inset-0
+        bg-no-repeat bg-cover bg-center
+        hidden md:block
+        "
+        style={{
+          backgroundImage: `
           linear-gradient(
             180deg,
             rgba(0,0,0,0) 0%,
@@ -187,8 +206,20 @@ const Home = () => {
           url(${posterData.backdropPath})
           `,
         }}
+      />
+
+      {/* 🎬 CONTENT */}
+      <div
+        className="
+        relative
+        flex flex-col justify-end
+        h-full
+        px-[24px] md:px-[164px]
+        pb-[40px] md:pb-[60px] lg:pb-[80px]
+        "
       >
         <div className="max-w-[90%] md:max-w-[600px]">
+
           <h1 className="text-white text-[28px] md:text-[48px] font-bold mb-3">
             {posterData.title}
           </h1>
@@ -200,10 +231,13 @@ const Home = () => {
           <button className="bg-white text-black rounded-md h-9 px-6">
             Play
           </button>
+
         </div>
       </div>
-    </>
-  );
+
+    </div>
+  </>
+);
 
   const renderView = () => {
     switch (apiStatus) {
