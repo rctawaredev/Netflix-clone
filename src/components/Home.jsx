@@ -8,6 +8,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaYoutube } from "react-icons/fa6";
+import TopRated from "./TopRated";
 
 const apiStatusConstants = {
   INITIAL: "INITIAL",
@@ -222,6 +223,7 @@ const Home = () => {
       <Navbar className="fixed top-0 left-0 right-0 bg-black/20 backdrop-blur-sm z-50" />
       {renderView()}
       <Trending />
+      <TopRated/>
       <Originals />
       {renderFooter()}
     </div>

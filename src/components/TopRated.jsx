@@ -11,7 +11,7 @@ const apiStatusConstants = {
   FAILURE: "FAILURE",
 };
 
-const Trending = () => {
+const TopRated = () => {
   const [data, setData] = useState([]);
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.INITIAL);
 
@@ -23,11 +23,11 @@ const Trending = () => {
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
-  const getMovies = async () => {
+  const getTopRatedMovies = async () => {
     setApiStatus(apiStatusConstants.IN_PROGRESS);
 
     try {
-      const url = "https://apis.ccbp.in/movies-app/trending-movies";
+      const url = "https://apis.ccbp.in/movies-app/top-rated-movies";
       const jwtToken = Cookies.get("jwt_token");
 
       const res = await fetch(url, {
@@ -49,67 +49,36 @@ const Trending = () => {
   };
 
   useEffect(() => {
-    getMovies();
+    getTopRatedMovies();
   }, []);
 
-
   const renderLoading = () => (
-  <div className="flex justify-center px-6 md:px-[164px]">
-    
-    <div className="
-      flex f
-      gap-5
-      justify-center
-      items-center
-      py-15
-      bg-[#0D0D0D]
-      w-full
-      max-w-6xl
-      rounded-lg
-    ">
-         <BeatLoader color="#ef4444" />
+    <div className="flex justify-center px-6 md:px-[164px]">
+      <div className="flex gap-5 justify-center items-center py-15 bg-[#0D0D0D] w-full max-w-6xl rounded-lg">
+        <BeatLoader color="#ef4444" />
+      </div>
     </div>
-  </div>
-);
-  
+  );
 
   const renderFailure = () => (
-  <div className="flex justify-center px-6 md:px-[164px]">
-    
-    <div className="
-      flex flex-col
-      gap-5
-      justify-center
-      items-center
-      py-10
-      bg-[#0D0D0D]
-      w-full
-      max-w-6xl
-      rounded-lg
-    ">
-
-      <img
-        src="https://res.cloudinary.com/distnojxb/image/upload/v1771499484/alert-triangle_y1ebev.png"
-        alt="failure"
-      />
-
-      <h1 className="text-white text-xs md:text-lg">
-        Something went wrong. Please try again
-      </h1>
-
-      <button
-        onClick={getMovies}
-        className="bg-white text-black text-xs md:text-sm px-4 py-2 rounded-md"
-      >
-        Try Again
-      </button>
-
+    <div className="flex justify-center px-6 md:px-[164px]">
+      <div className="flex flex-col gap-5 justify-center items-center py-10 bg-[#0D0D0D] w-full max-w-6xl rounded-lg">
+        <img
+          src="https://res.cloudinary.com/distnojxb/image/upload/v1771499484/alert-triangle_y1ebev.png"
+          alt="failure view"
+        />
+        <h1 className="text-white text-xs md:text-lg">
+          Something went wrong. Please try again
+        </h1>
+        <button
+          onClick={getTopRatedMovies}
+          className="bg-white text-black text-xs md:text-sm px-4 py-2 rounded-md"
+        >
+          Try Again
+        </button>
+      </div>
     </div>
-
-  </div>
-);
-  
-  
+  );
 
   const renderSuccess = () => (
     <div className="relative px-[24px] md:px-[164px]">
@@ -135,17 +104,11 @@ const Trending = () => {
               to={`/movies/${movie.id}`}
               className="flex-none w-[45%] md:w-[254px]"
             >
-              <div
-                className="
-                  w-full
-                  h-[120px] md:h-[170px]
-                  rounded-[8px]
-                  overflow-hidden"
-              >
+              <div className="w-full h-[120px] md:h-[170px] rounded-[8px] overflow-hidden">
                 <img
                   src={movie.backdrop_path}
                   alt={movie.title}
-                  className="w-full h-[120px] md:h-[170px] rounded-[8px] object-cover hover:scale-103 transition duration-300"
+                  className="w-full h-[120px] md:h-[170px] rounded-[8px] object-cover hover:scale-105 transition duration-300"
                 />
               </div>
             </Link>
@@ -171,11 +134,11 @@ const Trending = () => {
   return (
     <div className="bg-[#131313] py-6">
       <h1 className="text-[16px] md:text-[24px] font-semibold text-white px-[24px] md:px-[164px] pt-3 mb-4">
-        Trending Now
+        Top Rated
       </h1>
       {renderView()}
     </div>
   );
 };
 
-export default Trending;
+export default TopRated;

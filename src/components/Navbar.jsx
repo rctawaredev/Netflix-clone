@@ -13,7 +13,7 @@ const Navbar = ({ className = "", searchText, setSearchText, onSearch }) => {
   const isSearchPage = location.pathname === "/search";
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && searchText.trim() !== "") {
       onSearch();
     }
   };
@@ -21,63 +21,112 @@ const Navbar = ({ className = "", searchText, setSearchText, onSearch }) => {
   return (
     <nav className={`w-full px-10 lg:px-[164px] md:px-[100px] ${className}`}>
       <div className="max-w-7xl flex justify-between items-center text-white h-[75px] md:h-[103px]">
-       
         <ul className="flex items-center gap-5">
           <li>
-            <img
-              src="https://res.cloudinary.com/distnojxb/image/upload/v1771334227/Group_7399_1_f1gwrg.png"
-              className="md:h-10 h-7"
-            />
+            <Link to="/">
+              <img
+                src="https://res.cloudinary.com/distnojxb/image/upload/v1771334227/Group_7399_1_f1gwrg.png"
+                alt="website logo"
+                className="md:h-10 h-7"
+              />
+            </Link>
           </li>
 
           <li>
-            <Link to="/" className="hidden md:block text-lg hover:underline hover:decoration-red-500 ">
+            <Link
+              to="/"
+              className="hidden md:block text-lg hover:underline hover:decoration-red-500"
+            >
               Home
             </Link>
           </li>
 
           <li>
-            <Link to="/popular" className="hidden md:block text-lg hover:underline hover:decoration-red-500  ">
+            <Link
+              to="/popular"
+              className="hidden md:block text-lg hover:underline hover:decoration-red-500"
+            >
               Popular
             </Link>
           </li>
         </ul>
 
-      
         <ul className="flex items-center gap-4">
           {!isSearchPage && (
-            <li onClick={() => navigate("/search")}>
-              <FaSearch className="text-white text-xl cursor-pointer  hover:scale-110 transition duration-200" />
+            <li>
+              <button
+                data-testid="searchButton"
+                onClick={() => navigate("/search")}
+                className="hover:scale-110 pt-2 transition duration-200"
+              >
+                <FaSearch className="text-white text-xl" />
+              </button>
             </li>
           )}
 
           {isSearchPage && (
-            <li>
-              <div className="border-[1px] border-[#F8FAFC] flex justify-between items-center h-8 md:w-60 w-40 rounded-md">
+            <li className="flex items-center">
+              <div
+                className="
+                flex items-center
+                border border-[#F8FAFC]
+                rounded-md
+                overflow-hidden
+                md:w-[300px]
+                w-[180px]
+                h-[36px]
+                focus-within:border-red-500
+                transition duration-300
+                "
+              >
                 <input
                   type="search"
+                  role="searchbox"
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Search..."
-                  className="h-8 w-full outline-none bg-transparent px-2"
+                  placeholder="Search"
+                  className="
+                  w-full
+                  h-full
+                  bg-transparent
+                  px-3
+                  outline-none
+                  text-sm
+                  placeholder:text-gray-400
+                  "
                 />
-                <FaSearch
-                  className="bg-[#383737] text-white border-[1px] border-[#F8FAFC] rounded-r-md h-8 px-4 text-5xl"
-                  onClick={onSearch}
-                />
+
+                <button
+                  data-testid="searchButton"
+                  onClick={() => {
+                    if (searchText.trim() !== "") {
+                      onSearch();
+                    }
+                  }}
+                  className="
+                  h-full
+                  px-3
+                  bg-[#2c2b2b]
+                  flex items-center justify-center
+                  hover:bg-red-500
+                  transition duration-200
+                  "
+                >
+                  <FaSearch className="text-white text-sm" />
+                </button>
               </div>
             </li>
           )}
 
           <li>
             <Link to="/account">
-            <img
-              src="https://res.cloudinary.com/distnojxb/image/upload/v1771359519/Mask_Group_lz65bf.png"
-              className="h-10 md:block hidden hover:scale-110 transition duration-200"
-            />
+              <img
+                src="https://res.cloudinary.com/distnojxb/image/upload/v1771359519/Mask_Group_lz65bf.png"
+                alt="profile"
+                className="h-10 md:block hidden hover:scale-110 transition duration-200"
+              />
             </Link>
-            
 
             {clickedHamb ? (
               <RxCross2
@@ -95,10 +144,10 @@ const Navbar = ({ className = "", searchText, setSearchText, onSearch }) => {
       </div>
 
       <ul
-        className={`md:hidden flex flex-col items-center  gap-4 
-                   transition-all duration-200 ease-in-out
-                    ${clickedHamb ? "max-h-40 opacity-100 py-4" : "max-h-0 opacity-0"}
-                    bg-black/80`}
+        className={`md:hidden flex flex-col items-center gap-4 
+        transition-all duration-200 ease-in-out
+        ${clickedHamb ? "max-h-40 opacity-100 py-4" : "max-h-0 opacity-0"}
+        bg-black/80`}
       >
         <li>
           <Link to="/" className="text-white">
