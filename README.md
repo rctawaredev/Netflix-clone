@@ -1,16 +1,134 @@
-# React + Vite
+## Netflix Clone 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive Netflix-inspired web application built with React, Vite, Tailwind CSS, and React Router.  
+Users can log in, browse top-rated, trending, originals, and popular movies, view details, and search for movies using data from a remote movies API.
 
-Currently, two official plugins are available:
+### Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Authentication**
+  - Login screen with username/password and form validation
+  - JWT-based auth using cookies (`jwt_token`)
+  - Protected routes for all app pages except login
 
-## React Compiler
+- **Home page**
+  - Dynamic hero banner with a randomly selected top-rated movie
+  - Overview text and CTA button
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Movie browsing**
+  - Separate sections for **Trending**, **Originals**, and **Popular** movies
+  - Dedicated **Movie Details** page (`/movies/:id`)
+  - **Search** page to find movies by keyword
 
-## Expanding the ESLint configuration
+- **Account & Not Found**
+  - Account page for user-specific information
+  - Custom 404 / Not Found route
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **UI / UX**
+  - Modern Netflix-style layout using Tailwind CSS
+  - Responsive design for mobile, tablet, and desktop
+  - Loading states and error handling for API calls
+
+### Tech Stack
+
+- **Frontend**: React (Vite)
+- **Routing**: `react-router-dom`
+- **Styling**: Tailwind CSS
+- **State & utilities**:
+  - React hooks (`useState`, `useEffect`)
+  - `js-cookie` for JWT storage
+  - `react-spinners` for loading indicators
+  - `react-icons` for icons
+- **Build tooling**: Vite, ESLint
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js** \(recommended: v18+ or v20+\)
+- **npm** (comes with Node) or **pnpm/yarn** if you prefer
+
+### Installation
+
+```bash
+# clone the repository
+git clone <your-repo-url>
+cd netflixclone
+
+# install dependencies
+npm install
+```
+
+### Running the app in development
+
+```bash
+npm run dev
+```
+
+Then open the URL shown in your terminal (usually `http://localhost:5173`) in your browser.
+
+### Building for production
+
+```bash
+npm run build
+```
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+---
+
+## Available Scripts
+
+- **`npm run dev`**: Start the Vite dev server.
+- **`npm run build`**: Create an optimized production build.
+- **`npm run preview`**: Preview the production build locally.
+- **`npm run lint`**: Run ESLint on the codebase.
+
+---
+
+## API & Authentication
+
+- The app communicates with a remote movies API hosted under `https://apis.ccbp.in/movies-app`.
+- Authentication uses a JWT stored in a cookie named `jwt_token`.
+- Protected routes are implemented using a custom `ProtectedRoute` component that checks for a valid token before rendering the page.
+
+> If you are using this as part of a course or assignment, refer to the corresponding documentation for valid login credentials and any API restrictions.
+
+---
+
+## Project Structure (high level)
+
+```text
+src/
+  App.jsx              # Route configuration
+  components/
+    Login.jsx          # Login page
+    Home.jsx           # Home page with hero + sections
+    Trending.jsx       # Trending movies section
+    Originals.jsx      # Originals movies section
+    Popular.jsx        # Popular movies page
+    Search.jsx         # Search page
+    MovieDetails.jsx   # Movie details view
+    Account.jsx        # Account page
+    Navbar.jsx         # Top navigation bar
+    NotFound.jsx       # 404 page
+```
+
+---
+
+## Deployment
+
+The project is Vercel-ready (a `vercel.json` file is included).  
+You can deploy by connecting your repository to Vercel and using the default Vite + React configuration, or by serving the `dist` folder from any static hosting provider.
+
+---
+
+## Author
+
+- **LinkedIn**: [`https://www.linkedin.com/in/rctaware/`](https://www.linkedin.com/in/rctaware/)
+
