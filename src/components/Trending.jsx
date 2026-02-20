@@ -170,7 +170,7 @@ const Trending = () => {
 
   return (
     <div className="bg-[#131313] py-6">
-      <h1 className="text-[16px] md:text-[24px] font-semibold text-white px-[24px] md:px-[164px] mb-4">
+      <h1 className="text-[16px] md:text-[24px] font-semibold text-white px-[24px] md:px-[164px] pt-3 mb-4">
         Trending Now
       </h1>
       {renderView()}

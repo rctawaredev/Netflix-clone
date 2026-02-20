@@ -166,7 +166,7 @@ const Originals = () => {
         text-[16px] md:text-[24px]
         font-semibold text-white
         px-[24px] md:px-[164px]
-        mb-4
+        mb-4 pt-3
       "
       >
         Originals

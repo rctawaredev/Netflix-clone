@@ -66,7 +66,6 @@ const Home = () => {
             flex
             justify-center
             items-center
-            pt-50
             bg-[#0D0D0D]
             w-full
             max-w-6xl
