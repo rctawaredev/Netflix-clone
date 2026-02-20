@@ -15,9 +15,10 @@ Users can log in, browse top-rated, trending, originals, and popular movies, vie
   - Overview text and CTA button
 
 - **Movie browsing**
-  - Separate sections for **Trending**, **Originals**, and **Popular** movies
+  - Home sections: **Trending**, **Top Rated** (carousel), and **Originals**
+  - **Popular** movies page (`/popular`) with **pagination** (8 per page)
   - Dedicated **Movie Details** page (`/movies/:id`)
-  - **Search** page to find movies by keyword
+  - **Search** page to find movies by keyword, with **pagination** (8 per page)
 
 - **Account & Not Found**
   - Account page for user-specific information
@@ -26,6 +27,7 @@ Users can log in, browse top-rated, trending, originals, and popular movies, vie
 - **UI / UX**
   - Modern Netflix-style layout using Tailwind CSS
   - Responsive design for mobile, tablet, and desktop
+  - **Pagination** on Popular and Search (prev/next, page indicator)
   - Loading states and error handling for API calls
 
 ### Tech Stack
@@ -38,6 +40,7 @@ Users can log in, browse top-rated, trending, originals, and popular movies, vie
   - `js-cookie` for JWT storage
   - `react-spinners` for loading indicators
   - `react-icons` for icons
+- **Carousels**: `embla-carousel-react` (e.g. Top Rated section)
 - **Build tooling**: Vite, ESLint
 
 ---
@@ -108,14 +111,16 @@ src/
   App.jsx              # Route configuration
   components/
     Login.jsx          # Login page
-    Home.jsx           # Home page with hero + sections
+    Home.jsx           # Home page with hero + sections (Trending, TopRated, Originals)
     Trending.jsx       # Trending movies section
+    TopRated.jsx       # Top Rated movies carousel (embla-carousel)
     Originals.jsx      # Originals movies section
-    Popular.jsx        # Popular movies page
-    Search.jsx         # Search page
+    Popular.jsx        # Popular movies page (paginated)
+    Search.jsx         # Search page (paginated)
     MovieDetails.jsx   # Movie details view
     Account.jsx        # Account page
     Navbar.jsx         # Top navigation bar
+    ProtectedRoute.jsx # Auth guard for protected routes
     NotFound.jsx       # 404 page
 ```
 
@@ -131,4 +136,3 @@ You can deploy by connecting your repository to Vercel and using the default Vit
 ## Author
 
 - **LinkedIn**: [`https://www.linkedin.com/in/rctaware/`](https://www.linkedin.com/in/rctaware/)
-
