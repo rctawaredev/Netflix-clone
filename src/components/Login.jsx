@@ -43,7 +43,7 @@ const Login = () => {
   }
 
   return (
-    <div className="text-white bg-[#131313] min-h-screen md:bg-[url('https://res.cloudinary.com/distnojxb/image/upload/v1771338835/netfilx_1_nuz4ey.png')] md:bg-cover md:bg-center">
+    <div className="text-white bg-[#131313] min-h-screen  md:bg-[url('https://res.cloudinary.com/distnojxb/image/upload/v1771338835/netfilx_1_nuz4ey.png')] md:bg-cover md:bg-center">
       {/* Logo */}
       <img
         src="https://res.cloudinary.com/distnojxb/image/upload/v1771334227/Group_7399_1_f1gwrg.png"

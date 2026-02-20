@@ -2,6 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
+import {Link} from 'react-router-dom';
 
 const Navbar = ({className = "" }) => {
   const [clickedHamb, setClickedHamb] = useState(false);
@@ -69,7 +70,12 @@ const Navbar = ({className = "" }) => {
       >
         <li className="text-white">Home</li>
         <li className="text-white">Popular</li>
-        <li className="text-white">Account</li>
+        <li>
+          <Link  to="/account" className="text-white">
+           Account
+          </Link>
+         
+        </li>
       </ul>
 </nav>
   );
