@@ -47,28 +47,37 @@ const Search = () => {
     }
   };
 
-  // 🔴 LOADING
+ 
   const renderLoadingView = () => (
     <div className="flex justify-center items-center h-[90vh]">
       <BeatLoader color="#ef4444" />
     </div>
   );
 
-  // ❌ FAILURE
+
   const renderFailureView = () => (
-    <div className="flex justify-center items-center h-[90vh] text-white">
-      Something went wrong
+    <div className="flex flex-col justify-center items-center h-[90vh] text-white">
+     <img src="https://res.cloudinary.com/distnojxb/image/upload/v1771588535/Background-Complete_yqtj3n.png"
+     className="h-50 md:h-60"/>
+     <h1 className="text-white pt-10  text-md md:text-lg"> Something went wrong. Please try again </h1>
+       <button
+        onClick={getSearchResults}
+        className="bg-white text-black text-xs md:text-sm px-4 py-2 rounded-md mt-5"
+      >
+        Try Again
+      </button>
     </div>
   );
 
-  // ❌ NO RESULTS
+
   const renderNoResults = () => (
     <div className="flex flex-col items-center justify-center h-[90vh] text-white">
-      <p>Your search for {searchText} did not find any matches.</p>
+      <img src="https://res.cloudinary.com/distnojxb/image/upload/v1771588828/Group_7394_v64aiu.png" className="h-60 md:h-70"/>
+      <p className="text-white text-md md:text-lg">Your search for {searchText} did not find any matches.</p>
     </div>
   );
 
-  // ✅ SUCCESS
+  
   const renderSuccessView = () => {
 
     if (moviesList.length === 0) {

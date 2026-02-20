@@ -162,10 +162,9 @@ const Home = () => {
     );
   };
 
-  // ✅ SUCCESS
+  
   const renderSuccessView = () => (
     <>
-      {/* HERO */}
       <div
         className="
         w-full

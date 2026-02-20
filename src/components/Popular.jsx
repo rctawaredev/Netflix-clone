@@ -20,7 +20,7 @@ const Popular = () => {
   const [popularData, setPopularData] = useState([]);
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.INITIAL);
 
-  // 🔥 API CALL
+
   const getPopularMovies = async () => {
     setApiStatus(apiStatusConstants.IN_PROGRESS);
 
@@ -52,7 +52,7 @@ const Popular = () => {
     getPopularMovies();
   }, []);
 
-  // 🔴 LOADING VIEW
+  
   const renderLoadingView = () => (
     <>
       <Navbar className="bg-[#131313]" />
@@ -73,7 +73,7 @@ const Popular = () => {
     </>
   );
 
-  // ❌ FAILURE VIEW
+
   const renderFailureView = () => (
     <>
       <Navbar className="bg-[#131313]" />
@@ -112,14 +112,14 @@ const Popular = () => {
     </>
   );
 
-  // ✅ SUCCESS VIEW
+ 
   const renderSuccessView = () => (
     <>
       <Navbar className="bg-[#131313] fixed top-0 left-0 right-0 z-50" />
 
       <div className="pt-[100px] px-6 md:pt-30 md:px-[164px] pb-10">
 
-        {/* GRID */}
+        
         <div className="
           grid
           grid-cols-2

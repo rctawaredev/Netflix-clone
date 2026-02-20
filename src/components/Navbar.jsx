@@ -21,7 +21,7 @@ const Navbar = ({ className = "", searchText, setSearchText, onSearch }) => {
   return (
     <nav className={`w-full px-10 lg:px-[164px] md:px-[100px] ${className}`}>
       <div className="max-w-7xl flex justify-between items-center text-white h-[75px] md:h-[103px]">
-        {/* LEFT */}
+       
         <ul className="flex items-center gap-5">
           <li>
             <img
@@ -31,28 +31,26 @@ const Navbar = ({ className = "", searchText, setSearchText, onSearch }) => {
           </li>
 
           <li>
-            <Link to="/" className="hidden md:block text-lg">
+            <Link to="/" className="hidden md:block text-lg hover:underline hover:decoration-red-500 ">
               Home
             </Link>
           </li>
 
           <li>
-            <Link to="/popular" className="hidden md:block text-lg">
+            <Link to="/popular" className="hidden md:block text-lg hover:underline hover:decoration-red-500  ">
               Popular
             </Link>
           </li>
         </ul>
 
-        {/* RIGHT */}
+      
         <ul className="flex items-center gap-4">
-          {/* 🔍 ICON (HIDDEN on Search Page) */}
           {!isSearchPage && (
             <li onClick={() => navigate("/search")}>
-              <FaSearch className="text-white text-xl cursor-pointer" />
+              <FaSearch className="text-white text-xl cursor-pointer  hover:scale-110 transition duration-200" />
             </li>
           )}
 
-          {/* 🔍 INPUT (VISIBLE on Search Page) */}
           {isSearchPage && (
             <li>
               <div className="border-[1px] border-[#F8FAFC] flex justify-between items-center h-8 md:w-60 w-40 rounded-md">
@@ -75,7 +73,7 @@ const Navbar = ({ className = "", searchText, setSearchText, onSearch }) => {
           <li>
             <img
               src="https://res.cloudinary.com/distnojxb/image/upload/v1771359519/Mask_Group_lz65bf.png"
-              className="h-10 md:block hidden"
+              className="h-10 md:block hidden hover:scale-110 transition duration-200"
             />
 
             {clickedHamb ? (

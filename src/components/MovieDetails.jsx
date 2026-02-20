@@ -21,7 +21,7 @@ const MovieDetails = () => {
   const [similarMovies, setSimilarMovies] = useState([]);
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.INITIAL);
 
-  // 🎬 FETCH MOVIE DETAILS
+  
   const getMovieDetails = async () => {
     setApiStatus(apiStatusConstants.IN_PROGRESS);
 
@@ -55,7 +55,7 @@ const MovieDetails = () => {
         runtime: movie.runtime,
       });
 
-      // ✅ FIXED
+  
       setSimilarMovies(movie.similar_movies);
 
       setApiStatus(apiStatusConstants.SUCCESS);
@@ -68,7 +68,7 @@ const MovieDetails = () => {
     getMovieDetails();
   }, [id]);
 
-  // 🔴 LOADING VIEW
+
   const renderLoadingView = () => (
     <>
       <Navbar className="bg-[#131313]" />
@@ -80,7 +80,7 @@ const MovieDetails = () => {
     </>
   );
 
-  // ❌ FAILURE VIEW
+
   const renderFailureView = () => (
     <>
       <Navbar className="bg-[#131313]" />
@@ -156,7 +156,7 @@ const MovieDetails = () => {
       );
     };
 
-  // ✅ SUCCESS VIEW
+ 
   const renderSuccessView = () => {
     const hours = Math.floor((movieData.runtime || 0) / 60);
     const minutes = (movieData.runtime || 0) % 60;
@@ -164,10 +164,10 @@ const MovieDetails = () => {
 
     return (
       <>
-        {/* NAVBAR */}
+  
         <Navbar className="fixed top-0 left-0 right-0 bg-black/20 backdrop-blur-sm z-50" />
 
-        {/* HERO */}
+      
         <div
           className="w-full h-[80vh] md:h-[90vh] flex flex-col justify-end bg-no-repeat bg-cover bg-center px-6 md:px-[164px] pb-10 md:pb-16"
           style={{
@@ -187,7 +187,7 @@ const MovieDetails = () => {
               {movieData.title}
             </h1>
 
-            {/* RUNTIME + YEAR */}
+            
             <div className="flex items-center gap-3 text-white text-sm mb-3">
               <p>
                 {hours}h {minutes}m
@@ -206,7 +206,7 @@ const MovieDetails = () => {
           </div>
         </div>
 
-        {/* DETAILS SECTION */}
+        
         <div className="px-6 md:px-[164px] py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-white">
           <div>
             <p className="text-[#94A3B8] mb-2">Genres</p>
@@ -239,7 +239,7 @@ const MovieDetails = () => {
           </div>
         </div>
 
-        {/* MORE LIKE THIS */}
+    
         <div className="px-6 md:px-[164px] pb-10">
           <h1 className="text-white text-[16px] md:text-[24px] mb-4">
             More like this
