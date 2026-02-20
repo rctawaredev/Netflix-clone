@@ -71,10 +71,13 @@ const Navbar = ({ className = "", searchText, setSearchText, onSearch }) => {
           )}
 
           <li>
+            <Link to="/account">
             <img
               src="https://res.cloudinary.com/distnojxb/image/upload/v1771359519/Mask_Group_lz65bf.png"
               className="h-10 md:block hidden hover:scale-110 transition duration-200"
             />
+            </Link>
+            
 
             {clickedHamb ? (
               <RxCross2

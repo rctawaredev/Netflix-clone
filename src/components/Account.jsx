@@ -15,7 +15,7 @@ const Account=()=> {
                         <h1 className="md:text-xl text-lg text-[#94A3B8]">Membership</h1>
                     </li>
                     <li>
-                        <p className="text-[#1E293B] md:text-lg text-md">
+                        <p className="text-[#1E293B] md:text-lg text-sm">
                             rohantaware.work@gmail.com
                         </p>
                         <p className="text-[#64748B] md:text-lg text-md"> ****************** </p>
