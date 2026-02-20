@@ -1,4 +1,4 @@
-## Netflix Clone 🎬
+## Netflix Clone 🍿
 
 A responsive Netflix-inspired web application built with React, Vite, Tailwind CSS, and React Router.  
 Users can log in, browse top-rated, trending, originals, and popular movies, view details, and search for movies using data from a remote movies API.
