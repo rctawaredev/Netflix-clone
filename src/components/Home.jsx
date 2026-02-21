@@ -45,9 +45,9 @@ const Home = () => {
       setPosterData({
         id: randomMovie.id,
         backdropPath: randomMovie.backdrop_path,
-        posterPath:randomMovie.poster_path,
+        posterPath: randomMovie.poster_path,
         overview: randomMovie.overview,
-        title: randomMovie.title
+        title: randomMovie.title,
       });
 
       setApiStatus(apiStatusConstants.SUCCESS);
@@ -165,18 +165,17 @@ const Home = () => {
   };
 
   const renderSuccessView = () => (
-  <>
-    <div className="relative w-full h-[80vh] md:h-[90vh]">
-
-      {/* 📱 MOBILE POSTER */}
-      <div
-        className="
+    <>
+      <div className="relative w-full h-[80vh] md:h-[90vh]">
+      
+        <div
+          className="
         absolute inset-0
         bg-no-repeat bg-cover bg-center
         md:hidden
         "
-        style={{
-          backgroundImage: `
+          style={{
+            backgroundImage: `
           linear-gradient(
             180deg,
             rgba(0,0,0,0) 0%,
@@ -185,18 +184,18 @@ const Home = () => {
           ),
           url(${posterData.posterPath})
           `,
-        }}
-      />
+          }}
+        />
 
-      {/* 💻 DESKTOP BACKDROP */}
-      <div
-        className="
+
+        <div
+          className="
         absolute inset-0
         bg-no-repeat bg-cover bg-center
         hidden md:block
         "
-        style={{
-          backgroundImage: `
+          style={{
+            backgroundImage: `
           linear-gradient(
             180deg,
             rgba(0,0,0,0) 0%,
@@ -205,39 +204,36 @@ const Home = () => {
           ),
           url(${posterData.backdropPath})
           `,
-        }}
-      />
+          }}
+        />
 
-      {/* 🎬 CONTENT */}
-      <div
-        className="
+        
+        <div
+          className="
         relative
         flex flex-col justify-end
         h-full
         px-[24px] md:px-[164px]
         pb-[40px] md:pb-[60px] lg:pb-[80px]
         "
-      >
-        <div className="max-w-[90%] md:max-w-[600px]">
+        >
+          <div className="max-w-[90%] md:max-w-[600px]">
+            <h1 className="text-white text-[28px] md:text-[48px] font-bold mb-3">
+              {posterData.title}
+            </h1>
 
-          <h1 className="text-white text-[28px] md:text-[48px] font-bold mb-3">
-            {posterData.title}
-          </h1>
+            <p className="text-white text-[14px] md:text-[16px] mb-4">
+              {posterData.overview}
+            </p>
 
-          <p className="text-white text-[14px] md:text-[16px] mb-4">
-            {posterData.overview}
-          </p>
-
-          <button className="bg-white text-black rounded-md h-9 px-6">
-            Play
-          </button>
-
+            <button className="bg-white text-black rounded-md h-9 px-6">
+              Play
+            </button>
+          </div>
         </div>
       </div>
-
-    </div>
-  </>
-);
+    </>
+  );
 
   const renderView = () => {
     switch (apiStatus) {
@@ -257,7 +253,7 @@ const Home = () => {
       <Navbar className="fixed top-0 left-0 right-0 bg-black/20 backdrop-blur-sm z-50" />
       {renderView()}
       <Trending />
-      <TopRated/>
+      <TopRated />
       <Originals />
       {renderFooter()}
     </div>
