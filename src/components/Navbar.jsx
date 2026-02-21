@@ -20,7 +20,7 @@ const Navbar = ({ className = "", searchText, setSearchText, onSearch }) => {
 
   return (
     <nav className={`w-full px-10 lg:px-[164px] md:px-[100px] ${className}`}>
-      <div className="max-w-7xl flex justify-between items-center text-white h-[75px] md:h-[103px]">
+      <div className="max-w-7xl flex justify-between items-center text-white h-[75px] md:h-[90px]">
         <ul className="flex items-center gap-5">
           <li>
             <Link to="/">
